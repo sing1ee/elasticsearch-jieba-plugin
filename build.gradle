@@ -45,23 +45,23 @@ configurations {
     distJars {
         extendsFrom runtime
         exclude group: 'org.elasticsearch'
-        exclude module: 'lucene-core'
-        exclude module: 'org.apache.logging.log4j'
-        exclude module: 'lucene-analyzers-common'
+        exclude group: 'lucene-core'
+        exclude group: 'org.apache.logging.log4j'
+        exclude group: 'lucene-analyzers-common'
+        exclude group: 'org.apache.commons'
     }
 }
 
 dependencies {
-    compile group: 'com.huaban', name: 'jieba-analysis', version: '1.0.2'
-    compile group: 'org.elasticsearch', name: 'elasticsearch', version: '5.1.2'
-    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.7'
-    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.7'
-
+    compile 'com.huaban:jieba-analysis:1.0.2'
+    compile 'org.elasticsearch:elasticsearch:5.1.2'
+    compile 'org.apache.logging.log4j:log4j-api:2.7'
+    compile 'org.apache.logging.log4j:log4j-core:2.7'
     testCompile 'junit:junit:4.12'
 }
 
 task buildPluginZip(type: Zip, dependsOn: [':jar']) {
     from configurations.distJars
-    from 'build/resources/main/plugin-descriptor.properties'
+    from 'build/resources/main'
     from 'build/libs'
 }
