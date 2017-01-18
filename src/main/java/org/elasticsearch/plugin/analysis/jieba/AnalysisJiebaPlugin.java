@@ -23,7 +23,6 @@ public class AnalysisJiebaPlugin extends Plugin implements AnalysisPlugin {
   public Map<String, AnalysisModule.AnalysisProvider<TokenizerFactory>> getTokenizers() {
     Map<String, AnalysisModule.AnalysisProvider<TokenizerFactory>> extra = new HashMap<>();
 
-
     extra.put("jieba_search", JiebaTokenizerFactory::getJiebaSearchTokenizerFactory);
     extra.put("jieba_index", JiebaTokenizerFactory::getJiebaIndexTokenizerFactory);
 
