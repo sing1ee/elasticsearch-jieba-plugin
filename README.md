@@ -2,7 +2,7 @@
 jieba analysis plugin for elasticsearch ***5.1.2***
 
 
-### usage
+### USAGE
 0. checkout tag: v5.1.2
 
     ```shell
@@ -31,3 +31,5 @@ jieba analysis plugin for elasticsearch ***5.1.2***
         ./bin/elasticsearch
     ```
 
+###NOTE
+migrate from [jieba-solr](https://github.com/sing1ee/jieba-solr)
