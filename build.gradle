@@ -13,7 +13,9 @@ apply plugin: 'java'
 apply plugin: 'idea'
 
 sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
 repositories {
     maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     jcenter()
@@ -37,6 +39,18 @@ task initSourceFolders {
 	sourceSets*.resources.srcDirs*.each { it.mkdirs() }
 }
 
+
+configurations {
+    wagon
+    distJars {
+        extendsFrom runtime
+        exclude group: 'org.elasticsearch'
+        exclude module: 'lucene-core'
+        exclude module: 'org.apache.logging.log4j'
+        exclude module: 'lucene-analyzers-common'
+    }
+}
+
 dependencies {
     compile group: 'com.huaban', name: 'jieba-analysis', version: '1.0.2'
     compile group: 'org.elasticsearch', name: 'elasticsearch', version: '5.1.2'
@@ -44,4 +58,10 @@ dependencies {
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.7'
 
     testCompile 'junit:junit:4.12'
+}
+
+task buildPluginZip(type: Zip, dependsOn: [':jar']) {
+    from configurations.distJars
+    from 'build/resources/main/plugin-descriptor.properties'
+    from 'build/libs'
 }
