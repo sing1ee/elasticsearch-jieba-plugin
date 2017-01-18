@@ -11,7 +11,7 @@ import com.huaban.analysis.jieba.SegToken;
 
 public class JiebaAdapter implements Iterator<SegToken> {
 
-  private final JiebaSegmenter jiebaTagger;
+  private final static JiebaSegmenter jiebaTagger = new JiebaSegmenter();
 
   private final SegMode segMode;
 
@@ -21,7 +21,6 @@ public class JiebaAdapter implements Iterator<SegToken> {
 
   public JiebaAdapter(Reader input, String segModeName) {
 
-    this.jiebaTagger = new JiebaSegmenter();
 
     if (null == segModeName) {
       segMode = SegMode.SEARCH;
