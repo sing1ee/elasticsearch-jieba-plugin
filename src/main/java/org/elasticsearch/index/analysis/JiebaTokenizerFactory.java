@@ -1,8 +1,6 @@
 package org.elasticsearch.index.analysis;
 
 import com.huaban.analysis.jieba.JiebaSegmenter;
-import com.huaban.analysis.jieba.WordDictionary;
-import org.apache.logging.log4j.core.appender.SyslogAppender;
 import org.apache.lucene.analysis.Tokenizer;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.env.Environment;
@@ -16,8 +14,8 @@ public class JiebaTokenizerFactory extends AbstractTokenizerFactory {
   public JiebaTokenizerFactory(IndexSettings indexSettings, Environment env,
                                String name, Settings settings) {
     super(indexSettings, name, settings);
-    System.out.println(Thread.currentThread().getId() + ":load:" + this);
-    WordDictionary.getInstance().init(env.pluginsFile().resolve("jieba/dic"));
+    //    System.out.println(Thread.currentThread().getId() + ":load:" + this);
+    //    WordDictionary.getInstance().init(env.pluginsFile().resolve("jieba/dic"));
   }
 
   @Override
