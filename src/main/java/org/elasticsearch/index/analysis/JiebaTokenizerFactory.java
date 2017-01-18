@@ -2,6 +2,7 @@ package org.elasticsearch.index.analysis;
 
 import com.huaban.analysis.jieba.JiebaSegmenter;
 import com.huaban.analysis.jieba.WordDictionary;
+import org.apache.logging.log4j.core.appender.SyslogAppender;
 import org.apache.lucene.analysis.Tokenizer;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.env.Environment;
@@ -11,10 +12,11 @@ public class JiebaTokenizerFactory extends AbstractTokenizerFactory {
 
   private String segMode;
 
-  public JiebaTokenizerFactory(IndexSettings indexSettings, String name, Settings settings) {
+
+  public JiebaTokenizerFactory(IndexSettings indexSettings, Environment env,
+                               String name, Settings settings) {
     super(indexSettings, name, settings);
-    this.segMode = settings.get("segMode", JiebaSegmenter.SegMode.SEARCH.name());
-    Environment env = new Environment(indexSettings.getSettings());
+    System.out.println(env.pluginsFile());
     WordDictionary.getInstance().init(env.pluginsFile().resolve("jieba/dic"));
   }
 
@@ -35,7 +37,9 @@ public class JiebaTokenizerFactory extends AbstractTokenizerFactory {
                                                                 Environment environment,
                                                                 String s,
                                                                 Settings settings) {
-    JiebaTokenizerFactory jiebaTokenizerFactory = new JiebaTokenizerFactory(indexSettings, s,
+    JiebaTokenizerFactory jiebaTokenizerFactory = new JiebaTokenizerFactory(indexSettings,
+        environment,
+        s,
         settings);
     jiebaTokenizerFactory.setSegMode(JiebaSegmenter.SegMode.SEARCH.name());
     return jiebaTokenizerFactory;
@@ -45,7 +49,9 @@ public class JiebaTokenizerFactory extends AbstractTokenizerFactory {
                                                                Environment environment,
                                                                String s,
                                                                Settings settings) {
-    JiebaTokenizerFactory jiebaTokenizerFactory = new JiebaTokenizerFactory(indexSettings, s,
+    JiebaTokenizerFactory jiebaTokenizerFactory = new JiebaTokenizerFactory(indexSettings,
+        environment,
+        s,
         settings);
     jiebaTokenizerFactory.setSegMode(JiebaSegmenter.SegMode.INDEX.name());
     return jiebaTokenizerFactory;
