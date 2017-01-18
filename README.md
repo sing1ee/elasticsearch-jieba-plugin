@@ -3,6 +3,11 @@ jieba analysis plugin for elasticsearch ***5.1.2***
 
 
 ### usage
+0. checkout tag: v5.1.2
+
+    ```shell
+        git checkout v5.1.2
+    ```
 1. run
 
     ```shell
