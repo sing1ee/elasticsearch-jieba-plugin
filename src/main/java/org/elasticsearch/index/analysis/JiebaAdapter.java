@@ -27,6 +27,7 @@ public class JiebaAdapter implements Iterator<SegToken> {
     } else {
       segMode = SegMode.valueOf(segModeName);
     }
+    this.reset(input);
   }
 
   public synchronized void reset(Reader input) {
