@@ -27,7 +27,7 @@ jieba analysis plugin for elasticsearch ***5.1.2***
     ```
 
 
-###Custom User Dict
+### Custom User Dict
 Just put you dict file with suffix ***.dict*** into  ${path.home}/plugins/jieba/dic. Your dict
 file should like this:
 
@@ -39,5 +39,5 @@ file should like this:
         your_word word_freq
     ```
 
-###NOTE
+### NOTE
 migrate from [jieba-solr](https://github.com/sing1ee/jieba-solr)
