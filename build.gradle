@@ -60,8 +60,16 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-task buildPluginZip(type: Zip, dependsOn: [':jar']) {
-    from configurations.distJars
-    from 'build/resources/main'
-    from 'build/libs'
+task pz(type: Zip, dependsOn: [':jar']) {
+    into('jieba') {
+        from configurations.distJars
+        from 'build/libs'
+        from 'build/resources/main/plugin.xml'
+        from 'build/resources/main/plugin-descriptor.properties'
+    }
+    from('build/resources/main/') {
+        include '**.dict'
+        include '**.txt'
+        into ('jieba/dic')
+    }
 }

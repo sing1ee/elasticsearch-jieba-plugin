@@ -3,21 +3,16 @@ jieba analysis plugin for elasticsearch ***5.1.2***
 
 
 ### USAGE
-0. checkout tag: v5.1.2
-
-    ```shell
-        git checkout v5.1.2
-    ```
+0. pull code from master
 1. run
 
     ```shell
-        gradle buildPluginZip
+        gradle pz
     ```
-2. create a directory ${path.home}/plugins/jieba
-3. copy the zip file to plugin directory
+2. copy the zip file to plugin directory
 
     ```shell
-        cp build/distributions/elasticsearch-jieba-plugin-5.1.2.zip ${path.home}/plugins/jieba
+        cp build/distributions/elasticsearch-jieba-plugin-5.1.2.zip ${path.home}/plugins
     ```
 4. unzip and rm zip file
 
@@ -30,6 +25,19 @@ jieba analysis plugin for elasticsearch ***5.1.2***
     ```shell
         ./bin/elasticsearch
     ```
+
+###Custom User Dict
+Just put you dict file with suffix ***.dict*** into  ${path.home}/plugins/jieba/dic. Your dict
+file should like this:
+
+    ```shell
+        小清新 3
+        百搭 3
+        显瘦 3
+        隨身碟 100
+        your_word word_freq
+    ```
+
 
 ###NOTE
 migrate from [jieba-solr](https://github.com/sing1ee/jieba-solr)

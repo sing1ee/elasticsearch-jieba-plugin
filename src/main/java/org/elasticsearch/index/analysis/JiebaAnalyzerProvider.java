@@ -1,6 +1,7 @@
 package org.elasticsearch.index.analysis;
 
 import com.huaban.analysis.jieba.JiebaSegmenter;
+import com.huaban.analysis.jieba.WordDictionary;
 import org.apache.lucene.analysis.Analyzer;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.env.Environment;
@@ -24,8 +25,7 @@ public class JiebaAnalyzerProvider extends AbstractIndexAnalyzerProvider<JiebaAn
     } else {
       jiebaAnalyzer = new JiebaAnalyzer(settings.get("segMode", JiebaSegmenter.SegMode.SEARCH.name()));
     }
-    //    System.out.println(Thread.currentThread().getId() + ":load:" + this);
-    //    WordDictionary.getInstance().init(environment.pluginsFile().resolve("jieba/dic"));
+    WordDictionary.getInstance().init(environment.pluginsFile().resolve("jieba/dic"));
   }
 
   @Override

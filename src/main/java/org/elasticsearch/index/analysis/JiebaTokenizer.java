@@ -27,7 +27,7 @@ public class JiebaTokenizer extends Tokenizer {
     this.termAtt = addAttribute(CharTermAttribute.class);
     this.typeAtt = addAttribute(TypeAttribute.class);
 
-    jieba = new JiebaAdapter(this.input, segModeName);
+    jieba = new JiebaAdapter(segModeName);
   }
 
   @Override
