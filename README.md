@@ -6,25 +6,25 @@ jieba analysis plugin for elasticsearch ***5.1.2***
 0. pull code from master
 1. run
 
-    ```shell
-        gradle pz
-    ```
+```shell
+gradle pz
+```
 2. copy the zip file to plugin directory
 
-    ```shell
-        cp build/distributions/elasticsearch-jieba-plugin-5.1.2.zip ${path.home}/plugins
-    ```
+```shell
+cp build/distributions/elasticsearch-jieba-plugin-5.1.2.zip ${path.home}/plugins
+```
 4. unzip and rm zip file
 
-    ```shell
-        unzip elasticsearch-jieba-plugin-5.1.2.zip
-        rm elasticsearch-jieba-plugin-5.1.2.zip
-    ```
+```shell
+unzip elasticsearch-jieba-plugin-5.1.2.zip
+rm elasticsearch-jieba-plugin-5.1.2.zip
+```
 5. start elasticsearch
 
-    ```shell
-        ./bin/elasticsearch
-    ```
+```shell
+./bin/elasticsearch
+```
 
 
 ### Custom User Dict
