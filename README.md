@@ -25,6 +25,8 @@ jieba analysis plugin for elasticsearch ***5.1.2***
     ```shell
         ./bin/elasticsearch
     ```
+
+
 ###Custom User Dict
 Just put you dict file with suffix ***.dict*** into  ${path.home}/plugins/jieba/dic. Your dict
 file should like this:
