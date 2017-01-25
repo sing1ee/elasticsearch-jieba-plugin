@@ -1,4 +1,4 @@
-# elasticsearch-jieba-plugin
+# # elasticsearch-jieba-plugin
 jieba analysis plugin for elasticsearch ***5.1.2***
 
 
@@ -31,13 +31,16 @@ jieba analysis plugin for elasticsearch ***5.1.2***
 Just put you dict file with suffix ***.dict*** into  ${path.home}/plugins/jieba/dic. Your dict
 file should like this:
 
-    ```shell
-        小清新 3
-        百搭 3
-        显瘦 3
-        隨身碟 100
-        your_word word_freq
-    ```
+```shell
+小清新 3
+百搭 3
+显瘦 3
+隨身碟 100
+your_word word_freq
+
+```
 
 ### NOTE
 migrate from [jieba-solr](https://github.com/sing1ee/jieba-solr)
+
+
