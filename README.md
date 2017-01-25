@@ -31,11 +31,11 @@ Just put you dict file with suffix ***.dict*** into  ${path.home}/plugins/jieba/
 file should like this:
 
     ```shell
-        小清新 3
-        百搭 3
-        显瘦 3
-        隨身碟 100
-        your_word word_freq
+    小清新 3
+    百搭 3
+    显瘦 3
+    隨身碟 100
+    your_word word_freq
     ```
 
 
