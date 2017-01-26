@@ -205,11 +205,73 @@ Response as follow:
   ]
 }
 ```
-- Pay attention to ***jieba_synonym***, same with ***jieba_stop***, the format of synoyms.txt:
+- Pay attention to ***jieba_synonym**, same with ***jieba_stop***, the format of synoyms.txt:
 
 ```shell
 北京大学,北大,pku
 清华大学,清华,Tsinghua University
+```
+- create document
+
+```shell
+POST http://localhost:9200/jieba_index/fulltext/1
+```
+
+```json
+{"content":"中国的伟大时代来临了，欢迎参观北京大学PKU"}
+```
+
+- search
+
+```shell
+POST http://localhost:9200/jieba_index/fulltext/_search
+```
+Request body:
+
+```json
+{
+    "query" : { "match" : { "content" : "pku" }},
+    "highlight" : {
+        "pre_tags" : ["<tag1>", "<tag2>"],
+        "post_tags" : ["</tag1>", "</tag2>"],
+        "fields" : {
+            "content" : {}
+        }
+    }
+}
+```
+Response body:
+
+```json
+{
+  "took": 3,
+  "timed_out": false,
+  "_shards": {
+    "total": 5,
+    "successful": 5,
+    "failed": 0
+  },
+  "hits": {
+    "total": 1,
+    "max_score": 0.52305835,
+    "hits": [
+      {
+        "_index": "jieba_index",
+        "_type": "fulltext",
+        "_id": "1",
+        "_score": 0.52305835,
+        "_source": {
+          "content": "中国的伟大时代来临了，欢迎参观北京大学PKU"
+        },
+        "highlight": {
+          "content": [
+            "中国的伟大时代来临了，欢迎参观<tag1>北京大学</tag1><tag1>PKU</tag1>"
+          ]
+        }
+      }
+    ]
+  }
+}
 ```
 
 ### NOTE
