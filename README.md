@@ -90,7 +90,7 @@ PUT http://localhost:9200/jieba_index
 - test analyzer:
 
 ```shell
-GET http://localhost:9200/jieba_index/_analyze?analyzer=my_ana&text=中国的伟大时代来临了，欢迎参观北京大学HAHA
+GET http://localhost:9200/jieba_index/_analyze?analyzer=my_ana&text=中国的伟大时代来临了，欢迎参观北京大学PKU
 ```
 Response as follow:
 
@@ -175,14 +175,41 @@ Response as follow:
       "position": 12
     },
     {
-      "token": "haha",
+      "token": "pku",
+      "start_offset": 15,
+      "end_offset": 19,
+      "type": "SYNONYM",
+      "position": 12
+    },
+    {
+      "token": "pku",
       "start_offset": 19,
-      "end_offset": 23,
+      "end_offset": 22,
       "type": "word",
+      "position": 13
+    },
+    {
+      "token": "北大",
+      "start_offset": 19,
+      "end_offset": 22,
+      "type": "SYNONYM",
+      "position": 13
+    },
+    {
+      "token": "北京大学",
+      "start_offset": 19,
+      "end_offset": 22,
+      "type": "SYNONYM",
       "position": 13
     }
   ]
 }
+```
+- Pay attention to ***jieba_synonym**, same with ***jieba_stop***, the format of synoyms.txt:
+
+```shell
+北京大学,北大,pku
+清华大学,清华,Tsinghua University
 ```
 
 ### NOTE
