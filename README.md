@@ -205,7 +205,7 @@ Response as follow:
   ]
 }
 ```
-- Pay attention to ***jieba_synonym**, same with ***jieba_stop***, the format of synoyms.txt:
+- Pay attention to ***jieba_synonym***, same with ***jieba_stop***, the format of synoyms.txt:
 
 ```shell
 北京大学,北大,pku
