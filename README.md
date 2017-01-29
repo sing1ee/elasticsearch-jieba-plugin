@@ -1,13 +1,17 @@
-# # elasticsearch-jieba-plugin
-jieba analysis plugin for elasticsearch ***5.1.2***
+# elasticsearch-jieba-plugin
+jieba analysis plugin for elasticsearch
 
 
-### USAGE
-- choose right tag:
+### 版本对应
 
-```shell
-git checkout right_version_tag
-```
+| 插件版本 | elasticsearch版本 | Release Link |
+| --- | --- | --- | --- |
+| tag v5.1.2 | v5.1.2 | Download: [v5.1.2](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v5.1.2) |
+
+
+
+### more details
+- choose right version source code.
 - run
 
 ```shell
