@@ -6,7 +6,7 @@ jieba analysis plugin for elasticsearch ***5.1.2***
 - choose right tag:
 
 ```shell
-git check right_version_tag
+git checkout right_version_tag
 ```
 - run
 
