@@ -3,7 +3,11 @@ jieba analysis plugin for elasticsearch ***5.1.2***
 
 
 ### USAGE
-- pull code from master
+- choose right tag:
+
+```shell
+git check right_version_tag
+```
 - run
 
 ```shell
