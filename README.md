@@ -1,13 +1,14 @@
 # elasticsearch-jieba-plugin
-jieba analysis plugin for elasticsearch
+jieba analysis plugin for elasticsearch: ***5.2.0***,***5.1.2***,***5.1.1***
 
 
 ### 版本对应
 
-| 插件版本 | elasticsearch版本 | Release Link |
-| --- | --- | --- | --- |
-| tag v5.1.1 | v5.1.1 | Download: [v5.1.1](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v5.1.1) |
-| tag v5.1.2 | v5.1.2 | Download: [v5.1.2](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v5.1.2) |
+| 分支      | tag        | elasticsearch版本 | Release Link                                                                                  |
+| ---       | ---        | ---               | ---                                                                                           |
+| 5.2       | tag v5.2.0 | v5.2.0            | Download: [v5.2.0](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v5.2.0) |
+| 5.1.2     | tag v5.1.2 | v5.1.2            | Download: [v5.1.2](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v5.1.2) |
+| 5.1.1     | tag v5.1.1 | v5.1.1            | Download: [v5.1.1](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v5.1.1) |
 
 
 
