@@ -316,6 +316,7 @@ Query:
             "_source": {
               "includes": [
                 "name"
+                ]
             },
             "size": 2
           }
