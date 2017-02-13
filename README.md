@@ -284,6 +284,72 @@ Response body:
 }
 ```
 
+- 聚合示例（aggregation）
+
+Query:
+
+```json
+{
+  "query": {
+    "match": {
+      "name": "lala"
+    }
+  },
+  "_source": [
+    "name"
+  ],
+  "aggs": {
+    "dedup": {
+      "terms": {
+        "field": "your_agg_field"
+      },
+      "aggs": {
+        "dedup_docs": {
+          "top_hits": {
+            "sort": [
+              {
+                "updatedAt": {
+                  "order": "desc"
+                }
+              }
+            ],
+            "_source": {
+              "includes": [
+                "name"
+            },
+            "size": 2
+          }
+        }
+      }
+    },
+    "facets": {
+      "terms": {
+        "field": "your_facet_field"
+      },
+      "aggs": {
+        "facets_docs": {
+          "top_hits": {
+            "sort": [
+              {
+                "updatedAt": {
+                  "order": "desc"
+                }
+              }
+            ],
+            "_source": {
+              "includes": [
+                "name"
+              ]
+            },
+            "size": 1
+          }
+        }
+      }
+    }
+  }
+}
+```
+
 ### NOTE
 migrate from [jieba-solr](https://github.com/sing1ee/jieba-solr)
 
