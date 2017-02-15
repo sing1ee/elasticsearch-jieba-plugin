@@ -360,4 +360,5 @@ I will add more analyzer support:
 - stanford chinese analyzer
 - fudan nlp analyzer
 - ...
+
 If you have some ideas, you should create an issue. Then, we will do it together.
