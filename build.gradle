@@ -8,7 +8,7 @@
  */
 
 group 'org.elasticsearch'
-version = '5.1.2'
+version = '5.2.1'
 apply plugin: 'java'
 apply plugin: 'idea'
 
