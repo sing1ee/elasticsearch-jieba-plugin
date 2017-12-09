@@ -1,5 +1,5 @@
 # elasticsearch-jieba-plugin
-jieba analysis plugin for elasticsearch: ***5.4.0***, ***5.3.0***, ***5.2.2***, ***5.2.1***, ***5.2.0***, ***5.1.2***, ***5.1.1***
+jieba analysis plugin for elasticsearch: ***6.0.0***, ***5.4.0***, ***5.3.0***, ***5.2.2***, ***5.2.1***, ***5.2.0***, ***5.1.2***, ***5.1.1***
 
 
 ### 版本对应
