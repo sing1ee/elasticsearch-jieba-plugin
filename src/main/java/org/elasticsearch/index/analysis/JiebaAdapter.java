@@ -45,6 +45,7 @@ public class JiebaAdapter implements Iterator<SegToken> {
     }
 
     List<SegToken> list = jiebaTagger.process(raw, segMode);
+    list.sort((t1, t2) -> t1.startOffset - t2.startOffset);
     tokens = list.iterator();
   }
 
