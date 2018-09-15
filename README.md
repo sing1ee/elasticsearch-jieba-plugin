@@ -1,5 +1,5 @@
 # elasticsearch-jieba-plugin
-jieba analysis plugin for elasticsearch: ***6.0.0***, ***5.4.0***, ***5.3.0***, ***5.2.2***, ***5.2.1***, ***5.2.0***, ***5.1.2***, ***5.1.1***
+jieba analysis plugin for elasticsearch: ***6.4.0***, ***6.0.0***, ***5.4.0***, ***5.3.0***, ***5.2.2***, ***5.2.1***, ***5.2.0***, ***5.1.2***, ***5.1.1***
 
 
 ### 新分词支持
@@ -11,6 +11,7 @@ jieba analysis plugin for elasticsearch: ***6.0.0***, ***5.4.0***, ***5.3.0***, 
 
 | 分支      | tag        | elasticsearch版本 | Release Link                                                                                  |
 | ---       | ---        | ---               | ---                                                                                           |
+| 6.4.0     | tag v6.4.0 | v6.4.0            | Download: [v6.4.0](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v6.4.0) |
 | 6.0.0     | tag v6.0.0 | v6.0.0            | Download: [v6.0.1](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v6.0.1) |
 | 5.4.0     | tag v5.4.0 | v5.4.0            | Download: [v5.4.0](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v5.4.0) |
 | 5.3.0     | tag v5.3.0 | v5.3.0            | Download: [v5.3.0](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v5.3.0) |
