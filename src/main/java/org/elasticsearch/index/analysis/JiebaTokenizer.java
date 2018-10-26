@@ -52,11 +52,15 @@ public class JiebaTokenizer extends Tokenizer {
         if (token.word.startsWith(lastToken.word)) {
           posIncr = 0;
         } else {
-          // 新的切分
+          // 判断是否是新的切分
           if (endOffset2PosIncr.containsKey(token.startOffset)){
             posIncr = 1;
           } else {
-            posIncr = 0;
+            if (token.endOffset <= lastToken.endOffset) {
+              posIncr = 1;
+            } else {
+              posIncr = 0;
+            }
           }
         }
       }
