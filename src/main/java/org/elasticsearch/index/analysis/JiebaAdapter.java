@@ -2,6 +2,7 @@ package org.elasticsearch.index.analysis;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -45,7 +46,21 @@ public class JiebaAdapter implements Iterator<SegToken> {
     }
 
     List<SegToken> list = jiebaTagger.process(raw, segMode);
-    list.sort((t1, t2) -> t1.startOffset - t2.startOffset);
+    list.sort((o1, o2) -> {
+      if (o1.startOffset < o2.startOffset) {
+        return -1;
+      }
+      if (o1.startOffset > o2.startOffset) {
+        return 1;
+      }
+      if (o1.startOffset == o2.startOffset) {
+        if (o1.endOffset < o2.endOffset) {
+          return -1;
+        }
+        return 1;
+      }
+      return 0;
+    });
     tokens = list.iterator();
   }
 
