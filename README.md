@@ -7,7 +7,7 @@ jieba analysis plugin for elasticsearch: ***6.4.0***, ***6.0.0***, ***5.4.0***, 
 - [thulac分词ES插件](https://github.com/microbun/elasticsearch-thulac-plugin)， [thulac官网](http://thulac.thunlp.org/)
 
 
-# 如果是ES6.4.0的版本，请使用6.4.0分支最新的代码，也可以下载6.4.1的release
+# 如果是ES6.4.0的版本，请使用6.4.0分支最新的代码，或者master分支最新代码，也可以下载6.4.1的release
 
 ## 6.4.1的release，解决了PositionIncrement问题。详细说明见[ES分词PositionIncrement解析](https://github.com/sing1ee/kotlin-road/blob/master/ES-analysis-positionincrement.md)
 
