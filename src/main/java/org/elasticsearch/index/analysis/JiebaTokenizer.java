@@ -65,7 +65,6 @@ public class JiebaTokenizer extends Tokenizer {
         }
       }
       positionIncrementAttribute.setPositionIncrement(posIncr);
-      System.out.println(token.word + " " + token.endOffset + " " + posIncr);
       endOffset2PosIncr.put(token.endOffset, posIncr);
       endPosition = token.endOffset;
       lastToken = token;
