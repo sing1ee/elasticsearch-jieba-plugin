@@ -12,9 +12,8 @@ public class JiebaTokenizerFactory extends AbstractTokenizerFactory {
   private String segMode;
 
 
-  public JiebaTokenizerFactory(IndexSettings indexSettings, Environment env,
-                               String name, Settings settings) {
-    super(indexSettings, name, settings);
+  public JiebaTokenizerFactory(IndexSettings indexSettings, Environment env, Settings settings) {
+    super(indexSettings, settings);
     WordDictionary.getInstance().init(env.pluginsFile().resolve("jieba/dic"));
   }
 
@@ -37,7 +36,6 @@ public class JiebaTokenizerFactory extends AbstractTokenizerFactory {
                                                                 Settings settings) {
     JiebaTokenizerFactory jiebaTokenizerFactory = new JiebaTokenizerFactory(indexSettings,
         environment,
-        s,
         settings);
     jiebaTokenizerFactory.setSegMode(JiebaSegmenter.SegMode.SEARCH.name());
     return jiebaTokenizerFactory;
@@ -49,7 +47,6 @@ public class JiebaTokenizerFactory extends AbstractTokenizerFactory {
                                                                Settings settings) {
     JiebaTokenizerFactory jiebaTokenizerFactory = new JiebaTokenizerFactory(indexSettings,
         environment,
-        s,
         settings);
     jiebaTokenizerFactory.setSegMode(JiebaSegmenter.SegMode.INDEX.name());
     return jiebaTokenizerFactory;

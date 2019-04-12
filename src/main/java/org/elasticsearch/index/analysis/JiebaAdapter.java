@@ -2,7 +2,6 @@ package org.elasticsearch.index.analysis;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
