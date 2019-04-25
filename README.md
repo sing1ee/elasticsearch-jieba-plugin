@@ -2,7 +2,7 @@
 jieba analysis plugin for elasticsearch: ***7.0.0***, ***6.4.0***, ***6.0.0***, ***5.4.0***, ***5.3.0***, ***5.2.2***, ***5.2.1***, ***5.2.0***, ***5.1.2***, ***5.1.1***
 
 
-### 有关jieba_inde和jieba_search的应用
+### 有关jieba_index和jieba_search的应用
 
 [戳这里](about_jieba_index_jieba_search.md)
 
