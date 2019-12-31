@@ -7,13 +7,15 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.env.Environment;
 import org.elasticsearch.index.IndexSettings;
 
+
 public class JiebaTokenizerFactory extends AbstractTokenizerFactory {
+
+  public static final String TokenizerName = "JiebaTokenizer";
 
   private String segMode;
 
-
   public JiebaTokenizerFactory(IndexSettings indexSettings, Environment env, Settings settings) {
-    super(indexSettings, settings);
+    super(indexSettings, settings, TokenizerName);
     WordDictionary.getInstance().init(env.pluginsFile().resolve("jieba/dic"));
   }
 
