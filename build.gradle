@@ -8,12 +8,12 @@
  */
 
 group 'org.elasticsearch'
-version = '7.3.0'
+version = '7.5.1'
 apply plugin: 'java'
 apply plugin: 'idea'
 
 sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+targetCompatibility = "13"
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 repositories {
@@ -51,10 +51,10 @@ configurations {
         exclude group: 'org.apache.commons'
     }
 }
-
+`
 dependencies {
     compile 'com.huaban:jieba-analysis:1.0.2'
-    compile 'org.elasticsearch:elasticsearch:7.3.0'
+    compile 'org.elasticsearch:elasticsearch:7.5.1'
     compile 'org.apache.logging.log4j:log4j-api:2.7'
     compile 'org.apache.logging.log4j:log4j-core:2.7'
     testCompile 'junit:junit:4.12'
