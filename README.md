@@ -124,254 +124,53 @@ PUT http://localhost:9200/jieba_index
 - test analyzer:
 
 ```shell
-GET http://localhost:9200/jieba_index/_analyze?analyzer=my_ana&text=中国的伟大时代来临了，欢迎参观北京大学PKU
+PUT http://localhost:9200/jieba_index/_analyze
+{
+  "analyzer" : "my_ana",
+  "text" : "黄河之水天上来"
+}
 ```
 Response as follow:
 
 ```json
 {
-  "tokens": [
-    {
-      "token": "中国",
-      "start_offset": 0,
-      "end_offset": 2,
-      "type": "word",
-      "position": 0
-    },
-    {
-      "token": "伟大",
-      "start_offset": 3,
-      "end_offset": 5,
-      "type": "word",
-      "position": 2
-    },
-    {
-      "token": "时代",
-      "start_offset": 5,
-      "end_offset": 7,
-      "type": "word",
-      "position": 3
-    },
-    {
-      "token": "来临",
-      "start_offset": 7,
-      "end_offset": 9,
-      "type": "word",
-      "position": 4
-    },
-    {
-      "token": "欢迎",
-      "start_offset": 11,
-      "end_offset": 13,
-      "type": "word",
-      "position": 7
-    },
-    {
-      "token": "参观",
-      "start_offset": 13,
-      "end_offset": 15,
-      "type": "word",
-      "position": 8
-    },
-    {
-      "token": "北京",
-      "start_offset": 15,
-      "end_offset": 17,
-      "type": "word",
-      "position": 9
-    },
-    {
-      "token": "大学",
-      "start_offset": 17,
-      "end_offset": 19,
-      "type": "word",
-      "position": 10
-    },
-    {
-      "token": "北京大",
-      "start_offset": 15,
-      "end_offset": 18,
-      "type": "word",
-      "position": 11
-    },
-    {
-      "token": "北京大学",
-      "start_offset": 15,
-      "end_offset": 19,
-      "type": "word",
-      "position": 12
-    },
-    {
-      "token": "北大",
-      "start_offset": 15,
-      "end_offset": 19,
-      "type": "SYNONYM",
-      "position": 12
-    },
-    {
-      "token": "pku",
-      "start_offset": 15,
-      "end_offset": 19,
-      "type": "SYNONYM",
-      "position": 12
-    },
-    {
-      "token": "pku",
-      "start_offset": 19,
-      "end_offset": 22,
-      "type": "word",
-      "position": 13
-    },
-    {
-      "token": "北大",
-      "start_offset": 19,
-      "end_offset": 22,
-      "type": "SYNONYM",
-      "position": 13
-    },
-    {
-      "token": "北京大学",
-      "start_offset": 19,
-      "end_offset": 22,
-      "type": "SYNONYM",
-      "position": 13
-    }
-  ]
-}
-```
-- Pay attention to ***jieba_synonym**, same with ***jieba_stop***, the format of synoyms.txt:
-
-```shell
-北京大学,北大,pku
-清华大学,清华,Tsinghua University
-```
-- create document
-
-```shell
-POST http://localhost:9200/jieba_index/fulltext/1
-```
-
-```json
-{"content":"中国的伟大时代来临了，欢迎参观北京大学PKU"}
-```
-
-- search
-
-```shell
-POST http://localhost:9200/jieba_index/fulltext/_search
-```
-Request body:
-
-```json
-{
-    "query" : { "match" : { "content" : "pku" }},
-    "highlight" : {
-        "pre_tags" : ["<tag1>", "<tag2>"],
-        "post_tags" : ["</tag1>", "</tag2>"],
-        "fields" : {
-            "content" : {}
-        }
-    }
-}
-```
-Response body:
-
-```json
-{
-  "took": 3,
-  "timed_out": false,
-  "_shards": {
-    "total": 5,
-    "successful": 5,
-    "failed": 0
-  },
-  "hits": {
-    "total": 1,
-    "max_score": 0.52305835,
-    "hits": [
-      {
-        "_index": "jieba_index",
-        "_type": "fulltext",
-        "_id": "1",
-        "_score": 0.52305835,
-        "_source": {
-          "content": "中国的伟大时代来临了，欢迎参观北京大学PKU"
+    "tokens": [
+        {
+            "token": "黄河",
+            "start_offset": 0,
+            "end_offset": 2,
+            "type": "word",
+            "position": 0
         },
-        "highlight": {
-          "content": [
-            "中国的伟大时代来临了，欢迎参观<tag1>北京大学</tag1><tag1>PKU</tag1>"
-          ]
+        {
+            "token": "黄河之水天上来",
+            "start_offset": 0,
+            "end_offset": 7,
+            "type": "word",
+            "position": 0
+        },
+        {
+            "token": "之水",
+            "start_offset": 2,
+            "end_offset": 4,
+            "type": "word",
+            "position": 1
+        },
+        {
+            "token": "天上",
+            "start_offset": 4,
+            "end_offset": 6,
+            "type": "word",
+            "position": 2
+        },
+        {
+            "token": "上来",
+            "start_offset": 5,
+            "end_offset": 7,
+            "type": "word",
+            "position": 2
         }
-      }
     ]
-  }
-}
-```
-
-- 聚合示例（aggregation）
-
-Query:
-
-```json
-{
-  "query": {
-    "match": {
-      "name": "lala"
-    }
-  },
-  "_source": [
-    "name"
-  ],
-  "aggs": {
-    "dedup": {
-      "terms": {
-        "field": "your_agg_field"
-      },
-      "aggs": {
-        "dedup_docs": {
-          "top_hits": {
-            "sort": [
-              {
-                "updatedAt": {
-                  "order": "desc"
-                }
-              }
-            ],
-            "_source": {
-              "includes": [
-                "name"
-                ]
-            },
-            "size": 2
-          }
-        }
-      }
-    },
-    "facets": {
-      "terms": {
-        "field": "your_facet_field"
-      },
-      "aggs": {
-        "facets_docs": {
-          "top_hits": {
-            "sort": [
-              {
-                "updatedAt": {
-                  "order": "desc"
-                }
-              }
-            ],
-            "_source": {
-              "includes": [
-                "name"
-              ]
-            },
-            "size": 1
-          }
-        }
-      }
-    }
-  }
 }
 ```
 
