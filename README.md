@@ -1,5 +1,5 @@
 # elasticsearch-jieba-plugin
-jieba analysis plugin for elasticsearch: ***7.4.2***, ***7.3.0***, ***7.0.0***, ***6.4.0***, ***6.0.0***, ***5.4.0***, ***5.3.0***, ***5.2.2***, ***5.2.1***, ***5.2.0***, ***5.1.2***, ***5.1.1***
+jieba analysis plugin for elasticsearch: ***7.7.0***, ***7.4.2***, ***7.3.0***, ***7.0.0***, ***6.4.0***, ***6.0.0***, ***5.4.0***, ***5.3.0***, ***5.2.2***, ***5.2.1***, ***5.2.0***, ***5.1.2***, ***5.1.1***
 
 
 ### 有关jieba_index和jieba_search的应用
@@ -19,6 +19,7 @@ jieba analysis plugin for elasticsearch: ***7.4.2***, ***7.3.0***, ***7.0.0***, 
 
 | 分支      | tag        | elasticsearch版本 | Release Link                                                                                  |
 | ---       | ---        | ---               | ---                                                                                           |
+| 7.7.0     | tag v7.7.0 | v7.7.0            | Download: [v7.7.0](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v7.7.0) |
 | 7.4.2     | tag v7.4.2 | v7.4.2            | Download: [v7.4.2](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v7.4.2) |
 | 7.3.0     | tag v7.3.0 | v7.3.0            | Download: [v7.3.0](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v7.3.0) |
 | 7.0.0     | tag v7.0.0 | v7.0.0            | Download: [v7.0.0](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v7.0.0) |
