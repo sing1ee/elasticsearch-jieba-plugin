@@ -16,7 +16,7 @@ public class JiebaTokenizerFactory extends AbstractTokenizerFactory {
 
   public JiebaTokenizerFactory(IndexSettings indexSettings, Environment env, Settings settings) {
     super(indexSettings, settings, TokenizerName);
-    WordDictionary.getInstance().init(env.pluginsFile().resolve("jieba/dic"));
+     WordDictionary.getInstance().init(env.pluginsFile().resolve("jieba/dic"));
   }
 
   @Override
@@ -44,9 +44,9 @@ public class JiebaTokenizerFactory extends AbstractTokenizerFactory {
   }
 
   public static TokenizerFactory getJiebaIndexTokenizerFactory(IndexSettings indexSettings,
-                                                               Environment environment,
-                                                               String s,
-                                                               Settings settings) {
+                                                              Environment environment,
+                                                              String s,
+                                                              Settings settings) {
     JiebaTokenizerFactory jiebaTokenizerFactory = new JiebaTokenizerFactory(indexSettings,
         environment,
         settings);
