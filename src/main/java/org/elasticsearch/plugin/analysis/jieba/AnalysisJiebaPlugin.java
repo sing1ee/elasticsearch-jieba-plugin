@@ -1,5 +1,6 @@
 package org.elasticsearch.plugin.analysis.jieba;
 
+import com.huaban.analysis.jieba.WordDictionary;
 import org.apache.lucene.analysis.Analyzer;
 import org.elasticsearch.index.analysis.AnalyzerProvider;
 import org.elasticsearch.index.analysis.JiebaAnalyzerProvider;

@@ -15,16 +15,17 @@ public class JiebaAnalyzerProvider extends AbstractIndexAnalyzerProvider<JiebaAn
   private JiebaAnalyzer jiebaAnalyzer;
 
   public JiebaAnalyzerProvider(IndexSettings indexSettings,
-                               Environment environment,
-                               String name,
-                               Settings settings,
-                               JiebaSegmenter.SegMode mode) {
+                              Environment environment,
+                              String name,
+                              Settings settings,
+                              JiebaSegmenter.SegMode mode) {
     super(indexSettings, name, settings);
     if (null != mode) {
       jiebaAnalyzer = new JiebaAnalyzer(mode.name());
     } else {
       jiebaAnalyzer = new JiebaAnalyzer(settings.get("segMode", JiebaSegmenter.SegMode.SEARCH.name()));
     }
+
     WordDictionary.getInstance().init(environment.pluginsFile().resolve("jieba/dic"));
   }
 
@@ -47,9 +48,9 @@ public class JiebaAnalyzerProvider extends AbstractIndexAnalyzerProvider<JiebaAn
   }
 
   public static AnalyzerProvider<? extends Analyzer> getJiebaIndexAnalyzerProvider(IndexSettings indexSettings,
-                                                                                   Environment environment,
-                                                                                   String s,
-                                                                                   Settings settings) {
+                                                                                  Environment environment,
+                                                                                  String s,
+                                                                                  Settings settings) {
     JiebaAnalyzerProvider jiebaAnalyzerProvider = new JiebaAnalyzerProvider(indexSettings,
         environment,
         s,
