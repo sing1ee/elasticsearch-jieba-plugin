@@ -1,6 +1,9 @@
 # elasticsearch-jieba-plugin
 jieba analysis plugin for elasticsearch: ***7.7.0***, ***7.4.2***, ***7.3.0***, ***7.0.0***, ***6.4.0***, ***6.0.0***, ***5.4.0***, ***5.3.0***, ***5.2.2***, ***5.2.1***, ***5.2.0***, ***5.1.2***, ***5.1.1***
 
+### 简单的修改，即可适配不通版本的ES
+
+[戳这里](custom_plugin_version.md)
 
 ### 有关jieba_index和jieba_search的应用
 
