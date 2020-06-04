@@ -15,5 +15,5 @@ include 'shared'
 include 'api'
 include 'services:webservice'
 */
-
 rootProject.name = 'elasticsearch-jieba-plugin'
+include 'jieba-analysis'
