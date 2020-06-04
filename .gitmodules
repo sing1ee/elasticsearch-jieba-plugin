@@ -1,0 +1,3 @@
+[submodule "jieba-analysis"]
+	path = jieba-analysis
+	url = git@github.com:sing1ee/jieba-analysis.git
