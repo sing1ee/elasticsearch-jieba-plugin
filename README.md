@@ -29,7 +29,7 @@ jieba analysis plugin for elasticsearch: ***7.7.0***, ***7.4.2***, ***7.3.0***, 
 
 | 分支      | tag        | elasticsearch版本 | Release Link                                                                                  |
 | ---       | ---        | ---               | ---                                                                                           |
-| 7.7.0     | tag v7.7.0 | v7.7.0            | Download: [v7.7.0](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v7.7.0) |
+| 7.7.0     | tag v7.7.1 | v7.7.0            | Download: [v7.7.0](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v7.7.1) |
 | 7.4.2     | tag v7.4.2 | v7.4.2            | Download: [v7.4.2](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v7.4.2) |
 | 7.3.0     | tag v7.3.0 | v7.3.0            | Download: [v7.3.0](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v7.3.0) |
 | 7.0.0     | tag v7.0.0 | v7.0.0            | Download: [v7.0.0](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v7.0.0) |
@@ -51,7 +51,8 @@ jieba analysis plugin for elasticsearch: ***7.7.0***, ***7.4.2***, ***7.3.0***, 
 - run
 
 ```shell
-gradle pz
+git clone https://github.com/sing1ee/elasticsearch-jieba-plugin.git --recursive
+./gradlew clean pz
 ```
 - copy the zip file to plugin directory
 
