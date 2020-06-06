@@ -26,7 +26,7 @@ public class JiebaAnalyzerProvider extends AbstractIndexAnalyzerProvider<JiebaAn
       jiebaAnalyzer = new JiebaAnalyzer(settings.get("segMode", JiebaSegmenter.SegMode.SEARCH.name()));
     }
 
-    WordDictionary.getInstance().init(environment.pluginsFile().resolve("jieba/dic").toFile());
+    JiebaDict.init(environment);
   }
 
   @Override
