@@ -5,6 +5,11 @@ jieba analysis plugin for elasticsearch: ***7.7.0***, ***7.4.2***, ***7.3.0***, 
 
 [戳这里](custom_plugin_version.md)
 
+
+### 支持动态添加字典，ES不需要重启
+
+[戳这里](update_dict_online.md)
+
 ### 有关jieba_index和jieba_search的应用
 
 [戳这里](about_jieba_index_jieba_search.md)
