@@ -68,6 +68,7 @@ task pz(type: Zip, dependsOn: [':jar']) {
     into("jieba") {
         from configurations.distJars
         from 'build/libs'
+        from 'jieba-analysis/build/libs'
         from 'build/resources/main/plugin.xml'
         from 'build/resources/main/plugin-descriptor.properties'
     }
