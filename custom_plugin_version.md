@@ -7,6 +7,8 @@
     - 主要修改 `version` 和 `elasticsearch.version` 分别表示插件的版本和支持ES的版本，同样，如果是支持6.3.0的插件，都改为6.3.0就可以。
 - 执行打包命令
 ```shell script
-./gradlews pz
+git submodule update --init --recursive
+gradle wrapper
+./gradlew pz
 ```
 - 打包好的插件在目录： `./build/distributions`
