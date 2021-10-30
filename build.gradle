@@ -17,7 +17,7 @@ targetCompatibility = "1.8"
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 repositories {
-    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
     jcenter()
 }
 sourceSets {
@@ -43,7 +43,7 @@ task initSourceFolders {
 configurations {
     wagon
     distJars {
-        extendsFrom runtime
+        extendsFrom runtimeOnly
         exclude group: 'org.elasticsearch'
         exclude group: 'lucene-core'
         exclude group: 'org.apache.logging.log4j'
@@ -53,17 +53,22 @@ configurations {
 }
 
 dependencies {
-    compile project(":jieba-analysis")
-    compile 'org.elasticsearch:elasticsearch:7.7.0' // 适配不通版本的ES，可以修改这里。
-    compile 'org.apache.logging.log4j:log4j-api:2.7'
-    compile 'org.apache.logging.log4j:log4j-core:2.7'
-    testCompile 'junit:junit:4.12'
+    implementation project(":jieba-analysis")
+    implementation 'org.elasticsearch:elasticsearch:7.7.0' // 适配不通版本的ES，可以修改这里。
+    implementation 'org.apache.logging.log4j:log4j-api:2.7'
+    implementation 'org.apache.logging.log4j:log4j-core:2.7'
+    testImplementation 'junit:junit:4.12'
+}
+
+tasks.named("processResources") {
+    duplicatesStrategy = 'include'
 }
 
 task pz(type: Zip, dependsOn: [':jar']) {
     into("jieba") {
         from configurations.distJars
         from 'build/libs'
+        from 'jieba-analysis/build/libs'
         from 'build/resources/main/plugin.xml'
         from 'build/resources/main/plugin-descriptor.properties'
     }
