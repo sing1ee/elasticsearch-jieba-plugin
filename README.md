@@ -1,4 +1,67 @@
 # elasticsearch-jieba-plugin
+
+## Introduction
+This is the elasticsearch-jieba-plugin for elasticsearch v7.5.2
+
+## Difference from the original repo
+1. It's for elastic search v7.5.2
+2. Support traditional Chinese tokenization
+3. Use the customized jieba-analysis, not the original one, therefore, we need to pack customized jieba-analysis first
+
+## How to run it
+0. Prepare a elasticsearch with version 7.5.2
+1. Download customized jieba-analysis
+2. Run `mvn install` on jieba-analysis
+3. Download this repo, and run `gradle pz` on this repo
+4. Checkout to `elasticsearch-jieba-plugin/build/distributions` path, you'll find `elasticsearch-jieba-plugin-7.5.2.zip`
+5. Make a directory, move the zip to the created directory, and unzip it
+``` 
+mkdir elasticsearch-jieba-plugin-7.5.2
+mv elasticsearch-jieba-plugin-7.5.2.zip elasticsearch-jieba-plugin-7.5.2
+cd elasticsearch-jieba-plugin-7.5.2
+unzip elasticsearch-jieba-plugin-7.5.2.zip
+```
+6. Copy it to your elastic search
+7. You'll find the `elasticsearch-jieba-plugin-7.5.2` inside the path  `/usr/share/elasticsearch` on your elasticsearch
+8. Restart your elasticsearch, and you can use it
+
+## How to tokenize
+1. For `index` time, use `jieba_index` for analyzer.
+Ex:
+```
+{
+  "text": "寶可夢炎兔兒太陽眼鏡",
+  "analyzer": "jieba_index"
+}
+```
+2.  For `search` time, use `jieba_search` for analyzer.
+Ex:
+```
+{
+  "text": "寶可夢炎兔兒太陽眼鏡",
+  "analyzer": "jieba_search"
+}
+```
+
+## How to customize my dictionary
+1. Add dictionary file with suffix `.dict` inside `elasticsearch-jieba-plugin/src/dic`
+2. The schema for each row in the dictionary file will be
+`term{one_blank}term_frequency`, ex:
+```
+炎兔兒 2
+寶可夢 2
+史努比 2
+```
+3. Terms in dictionary file can be either traditional Chinese or simplified Chinese.
+
+
+
+
+# ----------------------------------------------
+
+
+# The following are readme from original repo: #
+
 jieba analysis plugin for elasticsearch: ***7.3.0***, ***7.0.0***, ***6.4.0***, ***6.0.0***, ***5.4.0***, ***5.3.0***, ***5.2.2***, ***5.2.1***, ***5.2.0***, ***5.1.2***, ***5.1.1***
 
 
