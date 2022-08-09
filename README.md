@@ -22,6 +22,9 @@ cd elasticsearch-jieba-plugin-7.5.2
 unzip elasticsearch-jieba-plugin-7.5.2.zip
 ```
 6. Copy it to your elasticsearch
+```
+docker cp {current_dir} {docker_CONTAINER_ID}:/usr/share/elasticsearch/plugins
+```
 7. You'll find the `elasticsearch-jieba-plugin-7.5.2` inside the path  `/usr/share/elasticsearch` on your elasticsearch
 8. Restart your elasticsearch, and you can use it
 
