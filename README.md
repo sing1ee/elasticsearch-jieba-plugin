@@ -1,5 +1,15 @@
 # elasticsearch-jieba-plugin
 
+
+### 20221201更新
+1. 新增```7.17.x```分支，支持es ```7.17.0```，JDK版本：```11.0.7```, gradle版本：```7.6```
+2. 当适配不同的ES版本，以及JDK版本，需要参考[ES和JDK版本的对应关系](https://www.elastic.co/cn/support/matrix#matrix_jvm)
+3. 适配不同ES版本,修改以下文件，需要修改的地方已经注明
+   - ***build.gradle***
+   - ***src/main/resources/plugin-descriptor.properties***
+   
+
+
 jieba analysis plugin for elasticsearch: ***7.7.0***, ***7.4.2***, ***7.3.0***, ***7.0.0***, ***6.4.0***, ***6.0.0***
 , ***5.4.0***, ***5.3.0***, ***5.2.2***, ***5.2.1***, ***5.2.0***, ***5.1.2***, ***5.1.1***
 
