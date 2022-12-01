@@ -1,7 +1,6 @@
 package org.elasticsearch.index.analysis;
 
 import com.huaban.analysis.jieba.JiebaSegmenter;
-import com.huaban.analysis.jieba.WordDictionary;
 import org.apache.lucene.analysis.Analyzer;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.env.Environment;
@@ -12,51 +11,49 @@ import org.elasticsearch.index.IndexSettings;
  */
 public class JiebaAnalyzerProvider extends AbstractIndexAnalyzerProvider<JiebaAnalyzer> {
 
-  private JiebaAnalyzer jiebaAnalyzer;
+    private JiebaAnalyzer jiebaAnalyzer;
 
-  public JiebaAnalyzerProvider(IndexSettings indexSettings,
-                              Environment environment,
-                              String name,
-                              Settings settings,
-                              JiebaSegmenter.SegMode mode) {
-    super(indexSettings, name, settings);
-    if (null != mode) {
-      jiebaAnalyzer = new JiebaAnalyzer(mode.name());
-    } else {
-      jiebaAnalyzer = new JiebaAnalyzer(settings.get("segMode", JiebaSegmenter.SegMode.SEARCH.name()));
+    public JiebaAnalyzerProvider(Environment environment,
+                                 String name,
+                                 Settings settings,
+                                 JiebaSegmenter.SegMode mode) {
+        super(name, settings);
+        if (null != mode) {
+            jiebaAnalyzer = new JiebaAnalyzer(mode.name());
+        } else {
+            jiebaAnalyzer = new JiebaAnalyzer(settings.get("segMode", JiebaSegmenter.SegMode.SEARCH.name()));
+        }
+
+        JiebaDict.init(environment);
     }
 
-    JiebaDict.init(environment);
-  }
+    public static AnalyzerProvider<? extends Analyzer> getJiebaSearchAnalyzerProvider(IndexSettings indexSettings,
+                                                                                      Environment environment,
+                                                                                      String s,
+                                                                                      Settings settings) {
+        JiebaAnalyzerProvider jiebaAnalyzerProvider = new JiebaAnalyzerProvider(environment,
+                s,
+                settings,
+                JiebaSegmenter.SegMode.SEARCH);
 
-  @Override
-  public JiebaAnalyzer get() {
-    return jiebaAnalyzer;
-  }
+        return jiebaAnalyzerProvider;
+    }
 
-  public static AnalyzerProvider<? extends Analyzer> getJiebaSearchAnalyzerProvider(IndexSettings indexSettings,
-                                                                                    Environment environment,
-                                                                                    String s,
-                                                                                    Settings settings) {
-    JiebaAnalyzerProvider jiebaAnalyzerProvider = new JiebaAnalyzerProvider(indexSettings,
-        environment,
-        s,
-        settings,
-        JiebaSegmenter.SegMode.SEARCH);
+    public static AnalyzerProvider<? extends Analyzer> getJiebaIndexAnalyzerProvider(IndexSettings indexSettings,
+                                                                                     Environment environment,
+                                                                                     String s,
+                                                                                     Settings settings) {
+        JiebaAnalyzerProvider jiebaAnalyzerProvider = new JiebaAnalyzerProvider(
+                environment,
+                s,
+                settings,
+                JiebaSegmenter.SegMode.INDEX);
 
-    return jiebaAnalyzerProvider;
-  }
+        return jiebaAnalyzerProvider;
+    }
 
-  public static AnalyzerProvider<? extends Analyzer> getJiebaIndexAnalyzerProvider(IndexSettings indexSettings,
-                                                                                  Environment environment,
-                                                                                  String s,
-                                                                                  Settings settings) {
-    JiebaAnalyzerProvider jiebaAnalyzerProvider = new JiebaAnalyzerProvider(indexSettings,
-        environment,
-        s,
-        settings,
-        JiebaSegmenter.SegMode.INDEX);
-
-    return jiebaAnalyzerProvider;
-  }
+    @Override
+    public JiebaAnalyzer get() {
+        return jiebaAnalyzer;
+    }
 }

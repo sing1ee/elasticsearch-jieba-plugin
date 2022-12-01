@@ -8,12 +8,12 @@
  */
 
 group 'org.elasticsearch'
-version = '7.7.0' // 适配不通版本的ES，可以修改这里。
+version = '8.5.2' // 适配不通版本的ES，可以修改这里。
 apply plugin: 'java'
 apply plugin: 'idea'
 
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+sourceCompatibility = "19"
+targetCompatibility = "19"
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 repositories {
@@ -30,14 +30,14 @@ sourceSets {
             srcDir "src/main/resources"
             srcDir "src/main/assemblies"
             srcDir "src/main/dic"
-                include "**/*"
+            include "**/*"
         }
     }
 }
 
 task initSourceFolders {
-	sourceSets*.java.srcDirs*.each { it.mkdirs() }
-	sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+    sourceSets*.java.srcDirs*.each { it.mkdirs() }
+    sourceSets*.resources.srcDirs*.each { it.mkdirs() }
 }
 
 
@@ -76,6 +76,6 @@ task pz(type: Zip, dependsOn: [':jar']) {
     from('build/resources/main/') {
         include '**.dict'
         include '**.txt'
-        into ('jieba/dic')
+        into('jieba/dic')
     }
 }

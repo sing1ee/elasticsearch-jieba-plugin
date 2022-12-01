@@ -1,7 +1,10 @@
 # elasticsearch-jieba-plugin
-jieba analysis plugin for elasticsearch: ***7.7.0***, ***7.4.2***, ***7.3.0***, ***7.0.0***, ***6.4.0***, ***6.0.0***, ***5.4.0***, ***5.3.0***, ***5.2.2***, ***5.2.1***, ***5.2.0***, ***5.1.2***, ***5.1.1***
+
+jieba analysis plugin for elasticsearch: ***7.7.0***, ***7.4.2***, ***7.3.0***, ***7.0.0***, ***6.4.0***, ***6.0.0***
+, ***5.4.0***, ***5.3.0***, ***5.2.2***, ***5.2.1***, ***5.2.0***, ***5.1.2***, ***5.1.1***
 
 ## 特点
+
 - 支持动态添加字典，不重启ES。
 
 ### 简单的修改，即可适配不同版本的ES
@@ -19,7 +22,6 @@ jieba analysis plugin for elasticsearch: ***7.7.0***, ***7.4.2***, ***7.3.0***, 
 ### 新分词支持
 
 - [thulac分词ES插件](https://github.com/microbun/elasticsearch-thulac-plugin)， [thulac官网](http://thulac.thunlp.org/)
-
 
 ### 如果是ES6.4.0的版本，请使用6.4.0分支最新的代码，或者master分支最新代码，也可以下载6.4.1的release，强烈推荐升级！
 
@@ -44,9 +46,8 @@ jieba analysis plugin for elasticsearch: ***7.7.0***, ***7.4.2***, ***7.3.0***, 
 | 5.1.2     | tag v5.1.2 | v5.1.2            | Download: [v5.1.2](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v5.1.2) |
 | 5.1.1     | tag v5.1.1 | v5.1.1            | Download: [v5.1.1](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v5.1.1) |
 
-
-
 ### more details
+
 - choose right version source code.
 - run
 
@@ -54,26 +55,29 @@ jieba analysis plugin for elasticsearch: ***7.7.0***, ***7.4.2***, ***7.3.0***, 
 git clone https://github.com/sing1ee/elasticsearch-jieba-plugin.git --recursive
 ./gradlew clean pz
 ```
+
 - copy the zip file to plugin directory
 
 ```shell
 cp build/distributions/elasticsearch-jieba-plugin-5.1.2.zip ${path.home}/plugins
 ```
+
 - unzip and rm zip file
 
 ```shell
 unzip elasticsearch-jieba-plugin-5.1.2.zip
 rm elasticsearch-jieba-plugin-5.1.2.zip
 ```
+
 - start elasticsearch
 
 ```shell
 ./bin/elasticsearch
 ```
 
-
 ### Custom User Dict
-Just put you dict file with suffix ***.dict*** into  ${path.home}/plugins/jieba/dic. Your dict
+
+Just put you dict file with suffix ***.dict*** into ${path.home}/plugins/jieba/dic. Your dict
 file should like this:
 
 ```shell
@@ -85,19 +89,21 @@ your_word word_freq
 
 ```
 
-
 ### Using stopwords
+
 - find stopwords.txt in ${path.home}/plugins/jieba/dic.
 - create folder named ***stopwords*** under ${path.home}/config
 
 ```shell
 mkdir -p {path.home}/config/stopwords
 ```
+
 - copy stopwords.txt into the folder just created
 
 ```shell
 cp ${path.home}/plugins/jieba/dic/stopwords.txt {path.home}/config/stopwords
 ```
+
 - create index:
 
 ```shell
@@ -132,6 +138,7 @@ PUT http://localhost:9200/jieba_index
   }
 }
 ```
+
 - test analyzer:
 
 ```shell
@@ -141,6 +148,7 @@ PUT http://localhost:9200/jieba_index/_analyze
   "text" : "黄河之水天上来"
 }
 ```
+
 Response as follow:
 
 ```json
@@ -186,10 +194,13 @@ Response as follow:
 ```
 
 ### NOTE
+
 migrate from [jieba-solr](https://github.com/sing1ee/jieba-solr)
 
 ### Roadmap
+
 I will add more analyzer support:
+
 - stanford chinese analyzer
 - fudan nlp analyzer
 - ...

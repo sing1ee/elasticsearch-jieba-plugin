@@ -25,9 +25,9 @@ public class JiebaDict {
                         }
                     };
 
-                    Timer t=new Timer();
+                    Timer t = new Timer();
 
-                    t.scheduleAtFixedRate(task,1000, 60 * 1000);
+                    t.scheduleAtFixedRate(task, 1000, 60 * 1000);
 
                     singleton = new JiebaDict();
                     return singleton;
