@@ -13,7 +13,8 @@
 ```shell
 gradle wrapper --gradle-version 7.6
 ```
-   
+
+***
 
 
 jieba analysis plugin for elasticsearch: ***7.7.0***, ***7.4.2***, ***7.3.0***, ***7.0.0***, ***6.4.0***, ***6.0.0***
