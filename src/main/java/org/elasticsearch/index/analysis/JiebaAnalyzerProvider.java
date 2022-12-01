@@ -13,11 +13,12 @@ public class JiebaAnalyzerProvider extends AbstractIndexAnalyzerProvider<JiebaAn
 
     private JiebaAnalyzer jiebaAnalyzer;
 
-    public JiebaAnalyzerProvider(Environment environment,
+    public JiebaAnalyzerProvider(IndexSettings indexSettings,
+                                 Environment environment,
                                  String name,
                                  Settings settings,
                                  JiebaSegmenter.SegMode mode) {
-        super(name, settings);
+        super(indexSettings, name, settings);
         if (null != mode) {
             jiebaAnalyzer = new JiebaAnalyzer(mode.name());
         } else {
@@ -31,7 +32,8 @@ public class JiebaAnalyzerProvider extends AbstractIndexAnalyzerProvider<JiebaAn
                                                                                       Environment environment,
                                                                                       String s,
                                                                                       Settings settings) {
-        JiebaAnalyzerProvider jiebaAnalyzerProvider = new JiebaAnalyzerProvider(environment,
+        JiebaAnalyzerProvider jiebaAnalyzerProvider = new JiebaAnalyzerProvider(indexSettings,
+                environment,
                 s,
                 settings,
                 JiebaSegmenter.SegMode.SEARCH);
@@ -43,7 +45,7 @@ public class JiebaAnalyzerProvider extends AbstractIndexAnalyzerProvider<JiebaAn
                                                                                      Environment environment,
                                                                                      String s,
                                                                                      Settings settings) {
-        JiebaAnalyzerProvider jiebaAnalyzerProvider = new JiebaAnalyzerProvider(
+        JiebaAnalyzerProvider jiebaAnalyzerProvider = new JiebaAnalyzerProvider(indexSettings,
                 environment,
                 s,
                 settings,
