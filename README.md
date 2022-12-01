@@ -2,11 +2,17 @@
 
 
 ### 20221201更新
-1. 新增```7.17.x```分支，支持es ```7.17.0```，JDK版本：```11.0.7```, gradle版本：```7.6```
+1. 新增分支:
+- ```7.17.x```分支，支持es ```7.17.0```，JDK版本：```11.0.7```, gradle版本：```7.6```
+- ```8.4.1```分支，支持es ```8.4.1```，JDK版本：```18.0.2.1```, gradle版本：```7.6```
 2. 当适配不同的ES版本，以及JDK版本，需要参考[ES和JDK版本的对应关系](https://www.elastic.co/cn/support/matrix#matrix_jvm)
 3. 适配不同ES版本,修改以下文件，需要修改的地方已经注明
-   - ***build.gradle***
-   - ***src/main/resources/plugin-descriptor.properties***
+- ***build.gradle***
+- ***src/main/resources/plugin-descriptor.properties***
+4. 需要切换不同的gradle版本,7.6是要切换的目标版本
+```shell
+gradle wrapper --gradle-version 7.6
+```
    
 
 
