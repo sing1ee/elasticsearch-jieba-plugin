@@ -1,0 +1,59 @@
+name: Create release and upload binaries
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]*"
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build release binaries
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+      
+      - name: Setup JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Update version 
+        run: |
+          tag=${GITHUB_REF#refs/tags/}
+          regex="v([0-9]+\.[0-9]+\.[0-9]+).*"
+          if [[ $tag =~ $regex ]]; then
+            extracted_version="${BASH_REMATCH[1]}"
+            echo "Extracted version: $extracted_version"
+          else
+            echo "Extracted version failed"
+            exit 1
+          fi
+          
+          sed -i "s/^version=.*/version=${tag}/" src/main/resources/plugin-descriptor.properties
+          sed -i "s/elasticsearch.version=.*/elasticsearch.version=${extracted_version}/" src/main/resources/plugin-descriptor.properties
+          sed -i "s/^version.*/version='${tag}'/" build.gradle
+          sed -i "s/org.elasticsearch:elasticsearch:.*/org.elasticsearch:elasticsearch:${extracted_version}'/" build.gradle
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: 7.6
+
+      - name: Build with Gradle
+        run: gradle pz
+
+      - name: Add Artifacts to Release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: build/distributions/*.zip
