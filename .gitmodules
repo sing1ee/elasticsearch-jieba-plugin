@@ -1,3 +1,3 @@
 [submodule "jieba-analysis"]
 	path = jieba-analysis
-	url = git@github.com:huaban/jieba-analysis.git
+	url = git@github.com:EMerGroup/jieba-analysis.git
