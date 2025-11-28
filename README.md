@@ -281,7 +281,7 @@ POST http://localhost:9200/jieba_index/_analyze
 
 ## License
 
-Apache License 2.0
+MIT License
 
 ---
 
