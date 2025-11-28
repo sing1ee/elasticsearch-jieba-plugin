@@ -1,5 +1,8 @@
 # elasticsearch-jieba-plugin
 
+# 20251128更新
+- I am back.
+- 更新了ES版本到8.11.1
 
 ### 20221201更新
 1. 新增分支:
