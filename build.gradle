@@ -12,8 +12,8 @@ version = '1.0.0' // 适配不通版本的ES，可以修改这里。
 apply plugin: 'java'
 apply plugin: 'idea'
 
-sourceCompatibility = "18" // 不同版本的es，需要不同版本的java环境，注意修改这里
-targetCompatibility = "18" // 不同版本的es，需要不同版本的java环境，注意修改这里
+sourceCompatibility = "17" // 不同版本的es，需要不同版本的java环境，注意修改这里
+targetCompatibility = "17" // 不同版本的es，需要不同版本的java环境，注意修改这里
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 repositories {
