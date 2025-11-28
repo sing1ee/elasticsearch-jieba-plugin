@@ -289,3 +289,4 @@ Apache License 2.0
 
 - 迁移自 [jieba-solr](https://github.com/sing1ee/jieba-solr)
 - 基于 [jieba](https://github.com/fxsjy/jieba) 中文分词
+- 感谢 [huaban](https://github.com/huaban) 提供的 jieba-analysis 依赖
