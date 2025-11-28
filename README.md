@@ -1,62 +1,184 @@
 # elasticsearch-jieba-plugin
 
-# 20251128更新
-- I am back.
-- 更新了ES版本到8.11.1
+Jieba 中文分词 Elasticsearch 插件
 
-### 20221201更新
-1. 新增分支:
-- ```7.17.x```分支，支持es ```7.17.0```，JDK版本：```11.0.7```, gradle版本：```7.6```
-- ```8.4.1```分支，支持es ```8.4.1```，JDK版本：```18.0.2.1```, gradle版本：```7.6```
-2. 当适配不同的ES版本，以及JDK版本，需要参考[ES和JDK版本的对应关系](https://www.elastic.co/cn/support/matrix#matrix_jvm)
-3. 适配不同ES版本,修改以下文件，需要修改的地方已经注明
-- ***build.gradle***
-- ***src/main/resources/plugin-descriptor.properties***
-4. 需要切换不同的gradle版本,7.6是要切换的目标版本
-```shell
-gradle wrapper --gradle-version 7.6
-```
+## 更新日志
 
-***
+### 20251128
+- 更新 ES 版本到 8.11.1
+- 更新 Java 版本到 17
+- 更新 jieba-analysis 依赖
 
+### 20221201
+- 新增 `7.17.x` 分支，支持 ES `7.17.0`
+- 新增 `8.4.1` 分支，支持 ES `8.4.1`
 
-jieba analysis plugin for elasticsearch: ***7.7.0***, ***7.4.2***, ***7.3.0***, ***7.0.0***, ***6.4.0***, ***6.0.0***
-, ***5.4.0***, ***5.3.0***, ***5.2.2***, ***5.2.1***, ***5.2.0***, ***5.1.2***, ***5.1.1***
+---
 
 ## 特点
 
-- 支持动态添加字典，不重启ES。
+- 支持动态添加字典，不重启 ES
+- 简单修改即可适配不同版本的 ES
 
-### 简单的修改，即可适配不同版本的ES
+## 快速开始
 
-[戳这里](custom_plugin_version.md)
+### 环境要求
 
-### 支持动态添加字典，ES不需要重启
+| 组件 | 版本 |
+|------|------|
+| Gradle | 7.6 |
+| Java | 17+ (需与目标 ES 版本兼容) |
+| Elasticsearch | 8.11.1 (当前默认) |
 
-[戳这里](update_dict_online.md)
+> 参考 [ES 和 JDK 版本对应关系](https://www.elastic.co/cn/support/matrix#matrix_jvm)
 
-### 有关jieba_index和jieba_search的应用
+### 克隆项目
 
-[戳这里](about_jieba_index_jieba_search.md)
+```shell
+git clone https://github.com/sing1ee/elasticsearch-jieba-plugin.git --recursive
+cd elasticsearch-jieba-plugin
+```
 
-### 新分词支持
+### 构建打包
 
-- [thulac分词ES插件](https://github.com/microbun/elasticsearch-thulac-plugin)， [thulac官网](http://thulac.thunlp.org/)
+```shell
+./gradlew clean pz
+```
 
-### 如果是ES6.4.0的版本，请使用6.4.0分支最新的代码，或者master分支最新代码，也可以下载6.4.1的release，强烈推荐升级！
+构建成功后，插件包位于：`build/distributions/elasticsearch-jieba-plugin-{version}.zip`
 
-#### 6.4.1的release，解决了PositionIncrement问题。详细说明见[ES分词PositionIncrement解析](https://github.com/sing1ee/kotlin-road/blob/master/ES-analysis-positionincrement.md)
+### 安装到 Elasticsearch
 
-### 版本对应
+```shell
+# 复制到 ES 插件目录
+cp build/distributions/elasticsearch-jieba-plugin-1.0.0.zip ${ES_HOME}/plugins/
+
+# 解压
+cd ${ES_HOME}/plugins/
+unzip elasticsearch-jieba-plugin-1.0.0.zip
+rm elasticsearch-jieba-plugin-1.0.0.zip
+
+# 启动 ES
+cd ${ES_HOME}
+./bin/elasticsearch
+```
+
+---
+
+## 适配不同 ES 版本（完整教程）
+
+如果需要适配其他版本的 Elasticsearch，按以下步骤操作：
+
+### 第一步：确定版本信息
+
+根据目标 ES 版本，查阅 [ES 和 JDK 版本对应关系](https://www.elastic.co/cn/support/matrix#matrix_jvm)，确定需要的 Java 版本。
+
+例如：
+| ES 版本 | 推荐 Java 版本 |
+|---------|----------------|
+| 8.x     | 17, 21         |
+| 7.17.x  | 11, 17         |
+| 7.x     | 11             |
+
+### 第二步：修改 `build.gradle`
+
+修改以下三处：
+
+```groovy
+// 1. 插件版本（可选）
+version = '1.0.0'
+
+// 2. Java 版本
+sourceCompatibility = "17"  // 改为你的 Java 版本
+targetCompatibility = "17"  // 改为你的 Java 版本
+
+// 3. ES 依赖版本
+dependencies {
+    implementation 'org.elasticsearch:elasticsearch:8.11.1'  // 改为目标 ES 版本
+}
+```
+
+### 第三步：修改 `src/main/resources/plugin-descriptor.properties`
+
+```properties
+# 插件版本
+version=1.0.0
+
+# Java 版本
+java.version=17
+
+# ES 版本（必须与 build.gradle 中一致）
+elasticsearch.version=8.11.1
+```
+
+### 第四步：确认 Java 环境
+
+```shell
+java -version
+```
+
+确保当前 Java 版本与配置一致。
+
+### 第五步：构建
+
+```shell
+./gradlew clean pz
+```
+
+### 第六步：验证
+
+构建成功后，检查生成的 zip 包：
+
+```shell
+ls -la build/distributions/
+```
+
+---
+
+## 常见问题
+
+### Gradle Wrapper 缺失
+
+如果遇到 `ClassNotFoundException: org.gradle.wrapper.GradleWrapperMain`，执行：
+
+```shell
+# 如果已安装 Gradle
+gradle wrapper --gradle-version 7.6
+
+# 或手动下载
+curl -L -o gradle/wrapper/gradle-wrapper.jar \
+  https://github.com/gradle/gradle/raw/v7.6.0/gradle/wrapper/gradle-wrapper.jar
+```
+
+### Java 版本不匹配
+
+如果遇到 `错误: 无效的源发行版`，检查：
+1. 系统 Java 版本：`java -version`
+2. `build.gradle` 中的 `sourceCompatibility`
+3. `plugin-descriptor.properties` 中的 `java.version`
+
+确保三者一致。
+
+---
+
+## 相关文档
+
+- [支持动态添加字典，ES不需要重启](update_dict_online.md)
+- [jieba_index 和 jieba_search 的应用](about_jieba_index_jieba_search.md)
+- [简单修改适配不同版本 ES](custom_plugin_version.md)
+
+---
+
+## 版本对应
 
 | 分支      | tag        | elasticsearch版本 | Release Link                                                                                  |
 | ---       | ---        | ---               | ---                                                                                           |
+| master    | -          | v8.11.1           | 从源码构建                                                                                     |
 | 7.7.0     | tag v7.7.1 | v7.7.0            | Download: [v7.7.0](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v7.7.1) |
 | 7.4.2     | tag v7.4.2 | v7.4.2            | Download: [v7.4.2](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v7.4.2) |
 | 7.3.0     | tag v7.3.0 | v7.3.0            | Download: [v7.3.0](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v7.3.0) |
 | 7.0.0     | tag v7.0.0 | v7.0.0            | Download: [v7.0.0](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v7.0.0) |
 | 6.4.0     | tag v6.4.1 | v6.4.0            | Download: [v6.4.1](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v6.4.1) |
-| 6.4.0     | tag v6.4.0 | v6.4.0            | Download: [v6.4.0](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v6.4.0) |
 | 6.0.0     | tag v6.0.0 | v6.0.0            | Download: [v6.0.1](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v6.0.1) |
 | 5.4.0     | tag v5.4.0 | v5.4.0            | Download: [v5.4.0](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v5.4.0) |
 | 5.3.0     | tag v5.3.0 | v5.3.0            | Download: [v5.3.0](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v5.3.0) |
@@ -66,65 +188,37 @@ jieba analysis plugin for elasticsearch: ***7.7.0***, ***7.4.2***, ***7.3.0***, 
 | 5.1.2     | tag v5.1.2 | v5.1.2            | Download: [v5.1.2](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v5.1.2) |
 | 5.1.1     | tag v5.1.1 | v5.1.1            | Download: [v5.1.1](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v5.1.1) |
 
-### more details
+---
 
-- choose right version source code.
-- run
+## 自定义用户词典
 
-```shell
-git clone https://github.com/sing1ee/elasticsearch-jieba-plugin.git --recursive
-./gradlew clean pz
+将 `.dict` 后缀的词典文件放入 `${ES_HOME}/plugins/jieba/dic` 目录，格式如下：
+
 ```
-
-- copy the zip file to plugin directory
-
-```shell
-cp build/distributions/elasticsearch-jieba-plugin-5.1.2.zip ${path.home}/plugins
-```
-
-- unzip and rm zip file
-
-```shell
-unzip elasticsearch-jieba-plugin-5.1.2.zip
-rm elasticsearch-jieba-plugin-5.1.2.zip
-```
-
-- start elasticsearch
-
-```shell
-./bin/elasticsearch
-```
-
-### Custom User Dict
-
-Just put you dict file with suffix ***.dict*** into ${path.home}/plugins/jieba/dic. Your dict
-file should like this:
-
-```shell
 小清新 3
 百搭 3
 显瘦 3
 隨身碟 100
-your_word word_freq
-
+你的词语 词频
 ```
 
-### Using stopwords
+---
 
-- find stopwords.txt in ${path.home}/plugins/jieba/dic.
-- create folder named ***stopwords*** under ${path.home}/config
+## 使用停用词
+
+### 1. 创建停用词目录
 
 ```shell
-mkdir -p {path.home}/config/stopwords
+mkdir -p ${ES_HOME}/config/stopwords
 ```
 
-- copy stopwords.txt into the folder just created
+### 2. 复制停用词文件
 
 ```shell
-cp ${path.home}/plugins/jieba/dic/stopwords.txt {path.home}/config/stopwords
+cp ${ES_HOME}/plugins/jieba/dic/stopwords.txt ${ES_HOME}/config/stopwords/
 ```
 
-- create index:
+### 3. 创建索引时配置分析器
 
 ```shell
 PUT http://localhost:9200/jieba_index
@@ -136,11 +230,11 @@ PUT http://localhost:9200/jieba_index
     "analysis": {
       "filter": {
         "jieba_stop": {
-          "type":        "stop",
+          "type": "stop",
           "stopwords_path": "stopwords/stopwords.txt"
         },
         "jieba_synonym": {
-          "type":        "synonym",
+          "type": "synonym",
           "synonyms_path": "synonyms/synonyms.txt"
         }
       },
@@ -159,70 +253,39 @@ PUT http://localhost:9200/jieba_index
 }
 ```
 
-- test analyzer:
+### 4. 测试分析器
 
 ```shell
-PUT http://localhost:9200/jieba_index/_analyze
+POST http://localhost:9200/jieba_index/_analyze
 {
-  "analyzer" : "my_ana",
-  "text" : "黄河之水天上来"
+  "analyzer": "my_ana",
+  "text": "黄河之水天上来"
 }
 ```
 
-Response as follow:
+响应示例：
 
 ```json
 {
-    "tokens": [
-        {
-            "token": "黄河",
-            "start_offset": 0,
-            "end_offset": 2,
-            "type": "word",
-            "position": 0
-        },
-        {
-            "token": "黄河之水天上来",
-            "start_offset": 0,
-            "end_offset": 7,
-            "type": "word",
-            "position": 0
-        },
-        {
-            "token": "之水",
-            "start_offset": 2,
-            "end_offset": 4,
-            "type": "word",
-            "position": 1
-        },
-        {
-            "token": "天上",
-            "start_offset": 4,
-            "end_offset": 6,
-            "type": "word",
-            "position": 2
-        },
-        {
-            "token": "上来",
-            "start_offset": 5,
-            "end_offset": 7,
-            "type": "word",
-            "position": 2
-        }
-    ]
+  "tokens": [
+    { "token": "黄河", "start_offset": 0, "end_offset": 2, "type": "word", "position": 0 },
+    { "token": "黄河之水天上来", "start_offset": 0, "end_offset": 7, "type": "word", "position": 0 },
+    { "token": "之水", "start_offset": 2, "end_offset": 4, "type": "word", "position": 1 },
+    { "token": "天上", "start_offset": 4, "end_offset": 6, "type": "word", "position": 2 },
+    { "token": "上来", "start_offset": 5, "end_offset": 7, "type": "word", "position": 2 }
+  ]
 }
 ```
 
-### NOTE
+---
 
-migrate from [jieba-solr](https://github.com/sing1ee/jieba-solr)
+## License
 
-### Roadmap
+Apache License 2.0
 
-I will add more analyzer support:
+---
 
-- stanford chinese analyzer
-- fudan nlp analyzer
-- ...
+## 致谢
 
-If you have some ideas, you should create an issue. Then, we will do it together.
+- 迁移自 [jieba-solr](https://github.com/sing1ee/jieba-solr)
+- 基于 [jieba](https://github.com/fxsjy/jieba) 中文分词
