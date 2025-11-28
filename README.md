@@ -62,7 +62,24 @@ rm elasticsearch-jieba-plugin-1.0.0.zip
 cd ${ES_HOME}
 ./bin/elasticsearch
 ```
+### 测试分词
+```shell
+# 测试 jieba_search 分词器
+curl -X POST "localhost:9200/_analyze" -H 'Content-Type: application/json' -d'
+{
+  "analyzer": "jieba_search",
+  "text": "中华人民共和国国歌"
+}
+'
 
+# 测试 jieba_index 分词器
+curl -X POST "localhost:9200/_analyze" -H 'Content-Type: application/json' -d'
+{
+  "analyzer": "jieba_index",
+  "text": "中华人民共和国国歌"
+}
+'
+```
 ---
 
 ## 适配不同 ES 版本（完整教程）
