@@ -21,7 +21,7 @@ public class JiebaDict {
                         public void run() {
                             System.out.println("start to load new dict");
                             WordDictionary.getInstance()
-                                    .init(environment.pluginsFile().resolve("jieba/dic").toFile());
+                                    .init(environment.pluginsFile().resolve("jieba/dic"));
                         }
                     };
 
